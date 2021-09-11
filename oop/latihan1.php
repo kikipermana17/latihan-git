@@ -24,3 +24,4 @@ echo "Merek Komputer : " . $komputer1->merk ."<hr>";
 $komputer2 = new komputer();
 echo "Nama Pemilik : " . $komputer1->nama ."<br>";
 echo " Komputer : " . $komputer1->menyala() ."<hr>";
+?>
