@@ -23,11 +23,13 @@ class komputer{
 
         $komputer2 = new komputer();
         echo "Nama Pemilik : " . $komputer2->nama ."<br>";
+        echo "Merek Komputer : " . $komputer2->merk ."<br>";
         echo " Komputer : " . $komputer2->menyala() ."<hr>";
 
         $komputer3 = new komputer();
         $komputer3->merk = "Philips";
         echo "Merk Komputer : " . $komputer3->merk ."<br>";
+        echo "Ukuran Komputer : " . $komputer3->ukuran ."<br>";
         echo " Komputer : " . $komputer3->matikan() ."<hr>";
 
         $komputer4 = new komputer();
