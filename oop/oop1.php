@@ -17,3 +17,12 @@ class kucing{
         return " Berburu Ikan";
     }
 }
+
+$kucing1 = new kucing();
+echo "Warna kucing : " . $kucing1->warna ."<br>";
+echo "sifat kucing : " . $kucing1->bersuara() ."<hr>";
+
+$kucing2 = new kucing();
+$kucing2->warna = "oren";
+echo "Warna kucing : " . $kucing1->warna ."<br>";
+echo "sifat kucing : " . $kucing1->berburu() ."<hr>";
