@@ -2,6 +2,10 @@
 
 class Ucapan
 {
+    public function __construct()
+    {
+        echo "Selamat Pagi <br>";
+    }
     public function siang()
     {
         return "Selamat Siang";
@@ -11,10 +15,7 @@ class Ucapan
         return "Selamat Sore";
     }
 
-    public function _construct()
-    {
-        echo "Selamat Pagi <br>";
-    }
+    
 }
 
 $selamat = new Ucapan();
