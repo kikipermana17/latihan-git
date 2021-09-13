@@ -21,13 +21,14 @@
             </tr>
         </table>
 <?php
-if (isset($_POST['input'])){
-    $bil1 = $_POST ['bil1'];
-    $bil2 = $_POST ['bil2'];
+if (isset($_POST['input'])) {
+    $bil1 = $_POST['bil1'];
+    $bil2 = $_POST['bil2'];
 
-    class aritmatika{
+    class aritmatika
+    {
         public $bil1, $bil2;
-        
+
         public function __construct($bil1, $bil2)
         {
             $this->bil1 = $bil1;
@@ -56,28 +57,28 @@ if (isset($_POST['input'])){
 
     }
 
-$bil = new aritmatika($bil1, $bil2);
-?>
+    $bil = new aritmatika($bil1, $bil2);
+    ?>
 <table>
     <tr>
-        <td>Penjumlahan <?php echo $bil->bil1 . " + " . $bil->bil2;?> </td>
-        <td> : <?php echo $bil->penjumlahan();?></td>
+        <td>Penjumlahan <?php echo $bil->bil1 . " + " . $bil->bil2; ?> </td>
+        <td> : <?php echo $bil->penjumlahan(); ?></td>
     </tr>
     <tr>
-        <td>Pengurangan <?php echo $bil->bil1 . " - " . $bil->bil2;?></td>
-        <td> : <?php echo $bil->pengurangan();?></td>
+        <td>Pengurangan <?php echo $bil->bil1 . " - " . $bil->bil2; ?></td>
+        <td> : <?php echo $bil->pengurangan(); ?></td>
     </tr>
     <tr>
-        <td>Perkalian <?php echo $bil->bil1 . " x " . $bil->bil2;?></td>
-        <td> : <?php echo $bil->perkalian();?></td>
+        <td>Perkalian <?php echo $bil->bil1 . " x " . $bil->bil2; ?></td>
+        <td> : <?php echo $bil->perkalian(); ?></td>
     </tr>
     <tr>
-        <td>Pembagian <?php echo $bil->bil1 . " / " . $bil->bil2;?></td>
-        <td> : <?php echo $bil->pembagian();?></td>
+        <td>Pembagian <?php echo $bil->bil1 . " / " . $bil->bil2; ?></td>
+        <td> : <?php echo $bil->pembagian(); ?></td>
     </tr>
     <tr>
-        <td>Sisa Hasil Bagi <?php echo $bil->bil1 . " % " . $bil->bil2;?></td>
-        <td> : <?php echo $bil->modulus();?></td>
+        <td>Sisa Hasil Bagi <?php echo $bil->bil1 . " % " . $bil->bil2; ?></td>
+        <td> : <?php echo $bil->modulus(); ?></td>
     </tr>
 </table>
 <?php
