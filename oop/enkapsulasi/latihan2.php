@@ -16,6 +16,11 @@
                     <td>:</td>
                     <td><input type="number" name="Kaki"></td>
                 </tr>
+                <tr>
+                    <td>Warna Kucing </td>
+                    <td>:</td>
+                    <td><input type="text" name="warna"></td>
+                </tr>
                     <td></td><td></td>
                     <td><input type="submit" name="proses" value="Proses"></td>
                 </tr>
@@ -28,15 +33,16 @@
 <?php
 if (isset($_POST['proses'])) {
     $jumlahKaki = $_POST['Kaki'];
+    $warna = $_POST['warna'];
 
-    class kakiKucing
+    class Kucing
     {
         public function __construct($jumlahKaki)
         {
             $this->jumlahKaki = $jumlahKaki;
 
         }
-        public function keadaanKucing()
+        public function info()
         {
             if ($this->jumlahKaki > 4) {
                 $outpu = "Siluman Kucing";
@@ -49,14 +55,17 @@ if (isset($_POST['proses'])) {
         }
 
     }
-    $kaki = new kakiKucing($jumlahKaki);
+    $kucing1 = new Kucing($jumlahKaki);
     ?>
 <table>
     <tr>
-        <td><?php echo "Jumlah Kaki : " . $kaki->jumlahKaki . "<br>"; ?> </td>
+        <td><?php echo "Warna Kucing : " . $warna . "<br>"; ?> </td>
     </tr>
     <tr>
-        <td><?php echo "Info : " . $kaki->keadaanKucing() . "<br>"; ?> </td>
+        <td><?php echo "Jumlah Kaki : " . $kucing1->jumlahKaki . "<br>"; ?> </td>
+    </tr>
+    <tr>
+        <td><?php echo "Info : Kucing " . $warna . " " . $kucing1->info() . "<br>";"<br>"; ?> </td>
     </tr>
 </table>
 <?php
