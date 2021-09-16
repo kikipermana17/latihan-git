@@ -7,64 +7,58 @@
     <title>Document</title>
 </head>
 <body>
-    <fieldset>
-        <legend>Kucing</legend>
-        <form action=" " method="post">
-            <tr>
-                <td>Masukan Kaki Kucing</td>
-                <td>: <input type="text" name="kaki"></td>
-            </tr>
-            <input type="submit" name="save" value="save">
-        </form>
-    </fieldset>
+    <form action="" method="post">
+        <fieldset>
+            <legend></legend>
+            <table>
+                <tr>
+                    <td>Jumlah Kaki Kucing </td>
+                    <td>:</td>
+                    <td><input type="number" name="Kaki"></td>
+                </tr>
+                    <td></td><td></td>
+                    <td><input type="submit" name="proses" value="Proses"></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
 </body>
 </html>
 
 <?php
-if (isset($_POST['save'])) {
-    $kucing = $_POST['kucing'];
+if (isset($_POST['proses'])) {
+    $jumlahKaki = $_POST['Kaki'];
 
-    class kucing
+    class kakiKucing
     {
-    public $warna = "Putih";
-    public $kucing
-    protected $kucing1 = "3Kaki";
-    protected $kucing2 = "4Kaki";
-    protected $kucing3 = "5Kaki";
+        public function __construct($jumlahKaki)
+        {
+            $this->jumlahKaki = $jumlahKaki;
 
-    public function kaki()
-    {
-        $kucing1 = $this->kucing1;
-        $kucing2 = $this->kucing2;
-        if ($kucing == $kucing1)
-        {
-            $a = "Kucing Cingked";
-        }elseif ($kucing == $kucing2)
-        {
-            $b = "Kucing Normal";
-        }else{
-            return "Kucing Siluman";
         }
-    }
-}
-class kucing1 extends kucing
-{
-    public function kaki()
-    {
-        $kucing1 = $this->kucing1;
-        $kucing2 = $this->kucing2;
-        if ($kucing == $kucing1)
+        public function keadaanKucing()
         {
-            $a = "Kucing Cingked";
-        }elseif ($kucing == $kucing2)
-        {
-            $b = "Kucing Normal";
-        }else{
-            return "Kucing Siluman";
+            if ($this->jumlahKaki > 4) {
+                $outpu = "Siluman Kucing";
+            } elseif ($this->jumlahKaki < 4) {
+                $outpu = "Kucing Cingked";
+            } elseif ($this->jumlahKaki = 4) {
+                $outpu = "Kucing Normal";
+            }
+            return $outpu;
         }
+
     }
+    $kaki = new kakiKucing($jumlahKaki);
+    ?>
+<table>
+    <tr>
+        <td><?php echo "Jumlah Kaki : " . $kaki->jumlahKaki . "<br>"; ?> </td>
+    </tr>
+    <tr>
+        <td><?php echo "Info : " . $kaki->keadaanKucing() . "<br>"; ?> </td>
+    </tr>
+</table>
+<?php
 }
-
-
-    }
-
+?>
