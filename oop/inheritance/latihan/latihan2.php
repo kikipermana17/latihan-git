@@ -61,12 +61,10 @@ if (isset($_POST['save'])) {
 
         public function dsc()
         {
-            if ($this->pesanan >= 150000)
-            {
-                $psn = $harga - 10%;
-            }elseif ($this->pesanan >= 250000)
-            {
-                $psn = $harga - 15%;
+            if ($this->pesanan >= 150000) {
+                $psn = $this->harga * 0.1;
+            } elseif ($this->pesanan >= 250000) {
+                $psn = $this->harga * 0.15;
             }
             return $psn;
         }
