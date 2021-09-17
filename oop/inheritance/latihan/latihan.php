@@ -36,29 +36,26 @@ if (isset($_POST['save'])) {
         {
             $this->hamba = $hamba;
         }
-        //public function manusia()
-        //{
-        //  return "Beribadah";
-        //}
+
     }
 
     class jin extends makhluk
     {
         public function sifat()
         {
-            parent::__construct($this->hamba);
+
             if ($this->hamba == "Malaikat") {
-                $outpu = "Beribadah kepada tuhan";
+                $tugas = "Beribadah kepada tuhan";
             } elseif ($this->hamba == "Manusia") {
-                $outpu = "Beribadah kepada tuhan";
+                $tugas = "Beribadah kepada tuhan";
             } elseif ($this->hamba == "Jin") {
-                $outpu = "Ada yg beribadah dan ada yg jahat";
+                $tugas = "Ada yg beribadah dan ada yg jahat";
             } elseif ($this->hamba == "Setan") {
-                $outpu = "Mengganggu Manusia";
+                $tugas = "Mengganggu Manusia";
             } else {
                 return "Hamba Tidak terdekteksi";
             }
-            return $outpu;
+            return $tugas;
 
         }
     }
