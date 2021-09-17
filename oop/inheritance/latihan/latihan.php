@@ -11,7 +11,7 @@
         <legend>Makhluk</legend>
         <form action=" " method="post">
             <tr>
-                <td>Jenis Hamba</td>
+                <td>OOP Inheritance</td>
                 <td>: <select name="hamba">
                         <option value="Manusia">Manusia</option>
                         <option value="Malaikat">Malaikat</option>
