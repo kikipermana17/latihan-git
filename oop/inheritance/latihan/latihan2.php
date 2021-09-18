@@ -7,115 +7,155 @@
     <title>Document</title>
 </head>
 <body>
+    <form action="" method="post">
+        <fieldset>
+            <legend>Pembayaran</legend>
+            <table>
+                <tr>
+                    <td>Nama Barang</td>
+                    <td>:</td>
+                    <td><input type="text" name="namabarang"></td>
+                </tr>
+                <tr>
+                    <td>Harga</td>
+                    <td>:</td>
+                    <td><input type="number" name="harga"></td>
+                </tr>
+                <tr>
+                    <td>Jumlah Pesanan</td>
+                    <td>:</td>
+                    <td><input type="number" name="jumlahpesanan"></td>
+                </tr>
 
-        <legend>Mahasiswa</legend>
-        <table>
-        <form action=" " method="post">
-            <tr>
-                <td>Nama Barang</td>
-                <td>: <input type="text" name="barang"></td>
+                    <tr>
+            <td>Sistem Pembayaran </td>
+            <td> : </td>
+            <td><select type="text" name="sistempembayaran" >
+            <option value= "Cash" > Cash</option>
+            <option value= "M-Banking" > M-Banking</option>
+            <option value= "Gopay" > Gopay</option>
+            <option value= "Pikup" > Pikup</option>
+            </select></td>
             </tr>
             <tr>
-                <td>Harga</td>
-                <td>: <input type="number" name="harga"></td>
-            </tr>
-            <tr>
-                <td>Jumlah Pesanan</td>
-                <td>: <input type="text" name="pesanan"></td>
-            </tr>
-            <tr>
-                <td>Sistem Pembayaran</td>
-                <td>: <select name="pembayaran">
-                        <option value="Cash">Cash</option>
-                        <option value="M-Banking">M-Bangkin</option>
-                        <option value="Gopay">Gopay</option>
-                        <option value="Pickup">Pickup</option>
-                </select></td>
-            </tr>
-            <tr>
-                <td><input type="submit" name="save" value="save"><input type="reset" name="reset" value="reset"></td>
-            </tr>
+                 <td></td><td></td>
+                 <td><input type="submit" name="Input" value="Input"><hr></td>
+                </tr>
 
-        </form>
-    </table>
 
-<?php
 
-if (isset($_POST['save'])) {
-    $barang = $_POST['barang'];
+    </form>
+    <?php
+if (isset($_POST['Input'])) {
+    $namabarang = $_POST['namabarang'];
+    $jumlahpesanan = $_POST['jumlahpesanan'];
     $harga = $_POST['harga'];
-    $pesanan = $_POST['pesanan'];
-    $pembayaran = $_POST['pembayaran'];
+    $sistempembayaran = $_POST['sistempembayaran'];
+    $harganormal = $harga * $jumlahpesanan;
 
-    class mahasiswa
+    function rupiah($angka)
     {
-        public $barang;
-        public $harga;
-        public $pesanan;
-        public function __construct($barang, $harga, $pesanan)
+
+        $hasil_rupiah = "Rp " . number_format($angka, 2, ',', '.');
+        return $hasil_rupiah;
+
+    }
+
+    class pembayaran
+    {
+        public function __construct($namabarang, $jumlahpesanan, $harga, $sistempembayaran, $harganormal)
         {
-            $this->barang = $barang;
+            $this->namabarang = $namabarang;
+            $this->jumlahpesanan = $jumlahpesanan;
             $this->harga = $harga;
-            $this->pesanan = $pesanan;
+            $this->sistempembayaran = $sistempembayaran;
+            $this->harganormal = $harganormal;
         }
-
-        public function dsc()
+        public function discount()
         {
-            if ($this->pesanan >= 150000) {
-                $psn = $this->harga * 0.1;
-            } elseif ($this->pesanan >= 250000) {
-                $psn = $this->harga * 0.15;
+            if ($this->harganormal >= 250000) {
+                $hargadiscount = $this->harganormal * 0.15;
+            } elseif ($this->harganormal >= 150000) {
+                $hargadiscount = $this->harganormal * 0.1;
+            } else {
+                $hargadiscount = 0;
             }
-            return $psn;
+            return $hargadiscount;
         }
-    }
 
-    class guru extends mahasiswa
+    }
+// turunkan class Malaikat ke chromebook
+    class systemPembayaran extends pembayaran
     {
-        public function sifat()
+        public function discountTambahan()
         {
+            if ("Cash" == $this->sistempembayaran) {
+                $a = $this->discount();
 
-            if ($this->pembayaran == "Cash") {
-                $tugas = "$this->harga";
-            } elseif ($this->pembayaran == "M-Bangking") {
-                $tugas = "$this->dsc()*0.025";
-            } elseif ($this->pembayaran == "Gopay") {
-                $tugas = "$this->dsc()*0.1";
-            } elseif ($this->pembayaran == "Pickup") {
-                $tugas = "$this->dsc()*0.015";
+            } elseif ("M-Banking" == $this->sistempembayaran) {
+                $a = ($this->harganormal * 0.025) + $this->discount();
+
+            } elseif ("Gopay" == $this->sistempembayaran) {
+                $a = ($this->harganormal * 0.1) + $this->discount();
+
+            } elseif ("Pikup" == $this->sistempembayaran) {
+                $a = ($this->harganormal * 0.015) + $this->discount();
+
             }
-            return $tugas;
+            return $a;
+        }
+        public function status()
+        {
+            if ("Cash" == $this->sistempembayaran) {
+                $a = $this->harganormal - $this->discount();
+
+            } elseif ("M-Banking" == $this->sistempembayaran) {
+                $a = $this->harganormal - $this->discountTambahan();
+
+            } elseif ("Gopay" == $this->sistempembayaran) {
+                $a = $this->harganormal - $this->discountTambahan();
+
+            } elseif ("Pikup" == $this->sistempembayaran) {
+                $a = $this->harganormal - $this->discountTambahan();
+
+            }
+            return $a;
         }
 
-    }
-    $input = new guru($nilai);
-    ?>
-<table>
-    <tr>
-        <td><?php echo "Nama Mahasiswa : " . $nama . "<br>"; ?> </td>
-    </tr>
-    <tr>
-        <td><?php echo "Nim : " . $nim . "<br>"; ?> </td>
-    </tr>
-    <tr>
-        <td><?php echo "Mata Kuliah : " . $matkul . "<br>"; ?> </td>
-    </tr>
-     <tr>
-        <td><?php echo "Nama Dosen : " . $dosen . "<br>"; ?> </td>
-    </tr>
-    <tr>
-        <td><?php echo "Nilai : " . $nilai . "<br>"; ?> </td>
-    </tr>
-    <tr>
-        <td><?php echo "Grade : " . $input->grade() . "<br>"; ?> </td>
-    </tr>
-    <tr>
-        <td><?php echo "Status : " . $input->sifat() . "<br>"; ?> </td>
-    </tr>
-</table>
-<?php
-}
-?>
+        public function csb()
+        {
+            if ("Cash" == $this->sistempembayaran) {
+                $a = "Anda Tidak Mendapatkan Cashback";
 
+            } elseif ("M-Banking" == $this->sistempembayaran) {
+                $a = "Anda Mendapatkan Cashback sebesar  " . $this->harganormal * 0.025;
+
+            } elseif ("Gopay" == $this->sistempembayaran) {
+                $a = "Anda Mendapatkan Cashback sebesar  " . $this->harganormal * 0.1;
+
+            } elseif ("Pikup" == $this->sistempembayaran) {
+                $a = "Anda Mendapatkan Cashback sebesar  " . $this->harganormal * 0.015;
+
+            }
+            return $a;
+        }
+    }
+    $output = new systemPembayaran($namabarang, $jumlahpesanan, $harga, $sistempembayaran, $harganormal);
+
+    echo "<tr><td>Nama Barang </td> <td>:</td>  <td>" . $output->namabarang . "</td><tr>";
+    echo "<tr><td>Harga Barang </td> <td>:</td>  <td>" . $output->harga . "</td><tr>";
+    echo "<tr><td>Jumlah Pesanan </td> <td>:</td>  <td>" . $output->jumlahpesanan . "</td><tr>";
+    echo "<tr><td>Harga Normal </td> <td>:</td>  <td>" . $output->harganormal . "</td><tr>";
+    echo "<tr><td>Jenis Pembayaran </td> <td>:</td>  <td>" . $output->sistempembayaran . "</td><tr>";
+    echo "<tr><td>Cashback</td> <td>:</td>  <td>" . $output->csb() . "</td><tr>";
+    echo "<tr><td>Discount</td> <td>:</td>  <td>" . $output->discount() . "</td><tr>";
+    echo "<tr><td>Total Discount</td> <td>:</td>  <td>" . $output->discountTambahan() . "</td><tr>";
+    echo "<tr><td>Total Harga</td> <td>:</td>  <td>" . $output->status() . "</td><tr>";
+
+}
+
+?>
+      </table>
+        </fieldset>
 </body>
 </html>
